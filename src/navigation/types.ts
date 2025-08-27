@@ -1,3 +1,5 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
+
 export type RootStackParamList = {
   Splash: undefined;
   Intro1: undefined;
@@ -6,22 +8,28 @@ export type RootStackParamList = {
   Login: undefined;
   UserLogin: undefined;
   CreateAccount: undefined;
-  ForgotPassword: undefined; // New
+  ForgotPassword: undefined;
   Home: undefined;
   UploadPhoto: undefined;
   AnalysisResult: {
-  skinType: string;
-  issues: string;
-  recommendations: string;
-  imageUri?: string; // الصورة اختيارية
-};
-  MorningRoutine: undefined;
-  EveningRoutine: undefined;
-  ProductsRecommendations: undefined;
-  BeautySection: undefined;
-  LipstickColor: undefined;
-  Eyeshadow: undefined;
-  Foundation: undefined;
+    skinType: string;
+    issues: string;
+    recommendations: string;
+    imageUri?: string;
+    skinTone: string;
+    faceShape: string;
+    morningRoutine: string[];
+    eveningRoutine: string[];
+    productSuggestions: string;
+  };
+  MorningRoutine: { routine: string[] };
+  EveningRoutine: { routine: string[] };
+  ProductsRecommendations: { productSuggestions: string };
+  BeautySection: { skinTone: string; faceShape: string; skinType: string };
+  LipstickColor: { skinTone: string };
+  Eyeshadow: { skinTone: string };
+  Foundation: { skinTone: string; skinType: string };
+  ProductDetails: undefined;
   PackagesPricing: undefined;
   Payment: undefined;
   AnalysisHistory: undefined;
@@ -35,5 +43,6 @@ export type RootStackParamList = {
   AppNotifications: undefined;
   Updates: undefined;
   Test: undefined;
-  ProductDetails: undefined;
+  // This is a test screen and should not be used in production
+  TestScreen: undefined;
 };

@@ -1,16 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
+import useAnalysisStore from '../store/analysisStore';
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Home'
->;
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const { skinTone, faceShape, skinType } = useAnalysisStore();
+
+  const handleBeautySectionPress = () => {
+    if (skinTone && faceShape && skinType) {
+      navigation.navigate('BeautySection', { skinTone, faceShape, skinType });
+    } else {
+      Alert.alert(
+        'Action Required',
+        'Please complete a skin analysis first to get personalized beauty recommendations.',
+        [
+          {
+            text: 'Start Analysis',
+            onPress: () => navigation.navigate('UploadPhoto'),
+          },
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+        ]
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -18,7 +38,6 @@ const HomeScreen = () => {
         <Text style={styles.welcomeText}>Welcome to SKINIQ!</Text>
         <Text style={styles.subtitle}>Choose an option to begin</Text>
 
-        {/* زر لتحليل البشرة */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('UploadPhoto')}
@@ -26,23 +45,20 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Start Skin Analysis</Text>
         </TouchableOpacity>
 
-        {/* زر لقسم التجميل */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('BeautySection')}
+          onPress={handleBeautySectionPress}
         >
           <Text style={styles.buttonText}>Beauty Section</Text>
         </TouchableOpacity>
 
-        {/* زر للباقات والأسعار */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('PackagesPricing')}
+          onPress={() => navigation.navigate('Packages')}
         >
           <Text style={styles.buttonText}>Packages & Pricing</Text>
         </TouchableOpacity>
 
-        {/* زر لسجل التحليلات */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('AnalysisHistory')}
@@ -50,15 +66,13 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Analysis History</Text>
         </TouchableOpacity>
 
-        {/* زر للتنبيهات والنصائح */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('NotificationsTips')}
+          onPress={() => navigation.navigate('Notifications')}
         >
           <Text style={styles.buttonText}>Notifications & Tips</Text>
         </TouchableOpacity>
 
-        {/* زر للإعدادات */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Settings')}
@@ -66,10 +80,9 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Settings</Text>
         </TouchableOpacity>
         
-        {/* زر للشاشة التجريبية */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Test')}
+          onPress={() => navigation.navigate('TestScreen')}
         >
           <Text style={styles.buttonText}>Test Screen</Text>
         </TouchableOpacity>

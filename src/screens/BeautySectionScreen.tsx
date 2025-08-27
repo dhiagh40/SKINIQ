@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
+
+type BeautySectionScreenRouteProp = RouteProp<RootStackParamList, 'BeautySection'>;
 
 type BeautySectionScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -11,25 +13,27 @@ type BeautySectionScreenNavigationProp = NativeStackNavigationProp<
 
 const BeautySectionScreen = () => {
   const navigation = useNavigation<BeautySectionScreenNavigationProp>();
+  const route = useRoute<BeautySectionScreenRouteProp>();
+  const { skinTone, faceShape, skinType } = route.params;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Beauty Section</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('LipstickColor')}
+        onPress={() => navigation.navigate('LipstickColor', { skinTone })}
       >
         <Text style={styles.buttonText}>Lipstick Colors</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Eyeshadow')}
+        onPress={() => navigation.navigate('Eyeshadow', { skinTone })}
       >
         <Text style={styles.buttonText}>Eyeshadows</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Foundation')}
+        onPress={() => navigation.navigate('Foundation', { skinTone, skinType })}
       >
         <Text style={styles.buttonText}>Foundation</Text>
       </TouchableOpacity>
