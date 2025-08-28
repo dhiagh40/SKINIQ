@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, RouteProp, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
+import useAnalysisStore from '../store/analysisStore';
 
 type AnalysisResultScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -14,7 +15,23 @@ type AnalysisResultScreenRouteProp = RouteProp<RootStackParamList, 'AnalysisResu
 const AnalysisResultScreen = () => {
   const navigation = useNavigation<AnalysisResultScreenNavigationProp>();
   const route = useRoute<AnalysisResultScreenRouteProp>();
-  const { skinType, issues, recommendations, imageUri } = route.params;
+  const { skinType, issues, recommendations, imageUri, morningRoutine, eveningRoutine, skinTone, faceShape, productSuggestions } = route.params;
+
+  const setAnalysisData = useAnalysisStore(state => state.setAnalysisData);
+
+  useEffect(() => {
+    setAnalysisData({
+      skinType,
+      issues,
+      recommendations,
+      imageUri,
+      morningRoutine,
+      eveningRoutine,
+      skinTone,
+      faceShape,
+      productSuggestions,
+    });
+  }, [route.params]);
 
   return (
     <View style={styles.container}>
@@ -38,13 +55,13 @@ const AnalysisResultScreen = () => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('MorningRoutine')}
+            onPress={() => navigation.navigate('MorningRoutine', { routine: morningRoutine || [] })}
           >
             <Text style={styles.buttonText}>Morning Routine</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('EveningRoutine')}
+            onPress={() => navigation.navigate('EveningRoutine', { routine: eveningRoutine || [] })}
           >
             <Text style={styles.buttonText}>Evening Routine</Text>
           </TouchableOpacity>

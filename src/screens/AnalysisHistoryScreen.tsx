@@ -17,7 +17,7 @@ const processRoutine = (routine: string | string[] | undefined): string[] => {
   return [];
 };
 
-const AnalysisResultScreen = () => {
+const AnalysisHistoryScreen = () => { // تم تغيير الاسم هنا
   const route = useRoute<AnalysisResultScreenRouteProp>();
   const navigation = useNavigation<AnalysisResultScreenNavigationProp>();
 
@@ -30,7 +30,7 @@ const AnalysisResultScreen = () => {
     skinTone = 'غير متاح',
     faceShape = 'غير متاح',
     morningRoutine = [],
-    eveningRoutine = [],
+     eveningRoutine = [],
     productSuggestions = 'غير متاح',
   } = route.params || {};
 
@@ -99,26 +99,21 @@ const AnalysisResultScreen = () => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.mainTitle}>Analysis Result</Text>
         {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
-
         {renderResultSection('Skin Type', skinType)}
         {renderResultSection('Issues', issues)}
         {renderResultSection('Recommendations', recommendations)}
         {renderResultSection('Skin Tone', skinTone)}
         {renderResultSection('Face Shape', faceShape)}
-
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={handleMorningRoutineButton}>
             <Text style={styles.buttonText}>Morning Routine</Text>
           </TouchableOpacity>
-
           <TouchableOpacity style={styles.button} onPress={handleEveningRoutineButton}>
             <Text style={styles.buttonText}>Evening Routine</Text>
           </TouchableOpacity>
-
           <TouchableOpacity style={styles.button} onPress={handleProductButton}>
             <Text style={styles.buttonText}>Products Suggestions</Text>
           </TouchableOpacity>
-
           <TouchableOpacity style={styles.button} onPress={handleBeautySection}>
             <Text style={styles.buttonText}>Beauty Section</Text>
           </TouchableOpacity>
@@ -143,4 +138,4 @@ const styles = StyleSheet.create({
   buttonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
 });
 
-export default AnalysisResultScreen;
+export default AnalysisHistoryScreen; 

@@ -11,6 +11,7 @@ const MorningRoutineScreen = () => {
   const route = useRoute<MorningRoutineScreenRouteProp>();
   const navigation = useNavigation<MorningRoutineScreenNavigationProp>();
 
+  // تم التعديل هنا لتبسيط استلام البيانات وتجنب أخطاء النوع
   const routine: string[] = Array.isArray(route.params?.routine) ? route.params.routine : [];
 
   return (

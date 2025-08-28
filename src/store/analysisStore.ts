@@ -1,19 +1,58 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// 1. تعريف أنواع البيانات في المخزن
 interface AnalysisState {
+  imageUri: string | null;
+  skinType: string | null;
+  issues: string | null;
+  recommendations: string | null;
   skinTone: string | null;
   faceShape: string | null;
-  skinType: string | null;
-  setAnalysisData: (data: { skinTone: string; faceShape: string; skinType: string }) => void;
-  clearAnalysisData: () => void;
+  morningRoutine: string[];
+  eveningRoutine: string[];
+  productSuggestions: string | null;
+  
+  // ✅ أضفنا دالة setAnalysisData
+  setAnalysisData: (data: Partial<AnalysisState>) => void;
+  clearAnalysisResult: () => void;
 }
 
-const useAnalysisStore = create<AnalysisState>((set) => ({
-  skinTone: null,
-  faceShape: null,
-  skinType: null,
-  setAnalysisData: (data) => set(data),
-  clearAnalysisData: () => set({ skinTone: null, faceShape: null, skinType: null }),
-}));
+// 2. إنشاء المخزن مع إضافة خاصية الحفظ الدائم
+const useAnalysisStore = create<AnalysisState>()(
+  persist(
+    (set) => ({
+      // الحالة الأولية (Initial State)
+      imageUri: null,
+      skinType: null,
+      issues: null,
+      recommendations: null,
+      skinTone: null,
+      faceShape: null,
+      morningRoutine: [],
+      eveningRoutine: [],
+      productSuggestions: null,
+
+      // الإجراءات (Actions)
+      setAnalysisData: (data) => set((state) => ({ ...state, ...data })),
+      clearAnalysisResult: () => set({
+        imageUri: null,
+        skinType: null,
+        issues: null,
+        recommendations: null,
+        skinTone: null,
+        faceShape: null,
+        morningRoutine: [],
+        eveningRoutine: [],
+        productSuggestions: null,
+      }),
+    }),
+    {
+      name: 'analysis-storage', // اسم فريد للمخزن
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
 
 export default useAnalysisStore;

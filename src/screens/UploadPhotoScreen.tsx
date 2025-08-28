@@ -71,17 +71,11 @@ const UploadPhotoScreen = () => {
       Alert.alert('No Image Selected', 'Please select a photo to analyze.');
       return;
     }
-    
-    // --- Start of advanced logging ---
-    console.log('Starting analysis...');
+
     if (!GEMINI_API_KEY) {
-      console.log('ERROR: GEMINI_API_KEY is not defined!');
       Alert.alert('Error', 'API key is missing.');
       return;
-    } else {
-      console.log('API Key seems to be present.');
     }
-    // --- End of advanced logging ---
 
     setLoading(true);
 
@@ -93,7 +87,7 @@ const UploadPhotoScreen = () => {
           {
             parts: [
               {
-                text: `Analyze the skin in this image. Provide a highly detailed analysis using the following JSON structure ONLY. Ensure the response is a single, valid JSON object without any additional text, markdown, or commentary. 
+                text: `Analyze the skin in this image. Provide a highly detailed analysis using the following JSON structure ONLY. Ensure the response is a single, valid JSON object without any additional text, markdown, or commentary.
                 {
                   "skinType": "Provide the primary skin type (e.g., Oily, Dry, Combination, Normal, Sensitive). Also, include 2-3 sentences of detailed reasoning based on visible characteristics like pore size, oiliness, or dryness.",
                   "issues": "List specific skin issues observed (e.g., Acne, Fine lines, Redness). For each issue, provide a brief 1-2 sentence explanation of its appearance in the photo.",
@@ -115,11 +109,6 @@ const UploadPhotoScreen = () => {
         ],
       };
       
-      // --- Start of advanced logging ---
-      console.log('Sending request to Gemini API...');
-      console.log('Request Body:', JSON.stringify(requestBody, null, 2));
-      // --- End of advanced logging ---
-      
       const response = await fetch(
         'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
         {
@@ -132,18 +121,8 @@ const UploadPhotoScreen = () => {
         }
       );
       
-      // --- Start of advanced logging ---
-      console.log('Received response from Gemini API.');
-      console.log('Response status:', response.status);
-      console.log('Response OK:', response.ok);
-      // --- End of advanced logging ---
-      
       const data = await response.json();
       
-      // --- Start of advanced logging ---
-      console.log('Parsed response data:', JSON.stringify(data, null, 2));
-      // --- End of advanced logging ---
-
       let parsedResult: AnalysisResult = {};
       let geminiText = '';
 
