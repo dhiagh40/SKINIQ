@@ -13,7 +13,8 @@ const HomeScreen = () => {
 
   const handleBeautySectionPress = () => {
     if (skinTone && faceShape && skinType) {
-      navigation.navigate('BeautySection', { skinTone, faceShape, skinType });
+      // no need to pass params since all makeup screens now get data from the store
+      navigation.navigate('BeautySectionScreen'); 
     } else {
       Alert.alert(
         'Action Required',
@@ -21,7 +22,7 @@ const HomeScreen = () => {
         [
           {
             text: 'Start Analysis',
-            onPress: () => navigation.navigate('UploadPhoto'),
+            onPress: () => navigation.navigate('UploadPhotoScreen'),
           },
           {
             text: 'Cancel',
@@ -40,7 +41,7 @@ const HomeScreen = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('UploadPhoto')}
+          onPress={() => navigation.navigate('UploadPhotoScreen')}
         >
           <Text style={styles.buttonText}>Start Skin Analysis</Text>
         </TouchableOpacity>
@@ -54,28 +55,28 @@ const HomeScreen = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Packages')}
+          onPress={() => navigation.navigate('PackagesPricingScreen')}
         >
           <Text style={styles.buttonText}>Packages & Pricing</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('AnalysisHistory')}
+          onPress={() => navigation.navigate('AnalysisHistoryScreen')}
         >
           <Text style={styles.buttonText}>Analysis History</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Notifications')}
+          onPress={() => navigation.navigate('NotificationsTipsScreen')}
         >
           <Text style={styles.buttonText}>Notifications & Tips</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Settings')}
+          onPress={() => navigation.navigate('SettingsScreen')}
         >
           <Text style={styles.buttonText}>Settings</Text>
         </TouchableOpacity>
@@ -92,37 +93,37 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollViewContent: {
-    padding: 20,
-    alignItems: 'center',
-  },
-  welcomeText: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 30,
-  },
   button: {
-    width: '100%',
-    backgroundColor: '#D1A39C',
-    paddingVertical: 18,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
     marginBottom: 15,
+    paddingVertical: 18,
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+  },
+  scrollViewContent: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
+    marginBottom: 30,
+  },
+  welcomeText: {
+    color: '#333',
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });
 

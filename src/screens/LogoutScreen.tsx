@@ -32,27 +32,13 @@ const LogoutScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#333',
-    textAlign: 'center',
-  },
   button: {
-    width: '100%',
-    backgroundColor: '#FF6347',
-    paddingVertical: 15,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#FF6347',
+    borderRadius: 8,
     marginBottom: 15,
+    paddingVertical: 15,
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
@@ -60,15 +46,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cancelButton: {
-    width: '100%',
-    paddingVertical: 15,
-    borderRadius: 8,
     alignItems: 'center',
+    borderRadius: 8,
+    paddingVertical: 15,
+    width: '100%',
   },
   cancelButtonText: {
     color: '#D1A39C',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 40,
+    textAlign: 'center',
   },
 });
 

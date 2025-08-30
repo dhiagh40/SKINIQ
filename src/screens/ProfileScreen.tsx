@@ -25,48 +25,48 @@ const ProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#333',
-    textAlign: 'center',
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    backgroundColor: '#F9F5F0',
-    padding: 15,
-    borderRadius: 8,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    marginRight: 10,
-  },
-  infoText: {
-    fontSize: 16,
-    color: '#333',
-  },
   button: {
-    width: '100%',
-    backgroundColor: '#D1A39C',
-    paddingVertical: 15,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
     marginTop: 30,
+    paddingVertical: 15,
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    padding: 20,
+  },
+  infoContainer: {
+    alignItems: 'center',
+    backgroundColor: '#F9F5F0',
+    borderRadius: 8,
+    flexDirection: 'row',
+    marginBottom: 20,
+    padding: 15,
+  },
+  infoText: {
+    color: '#333',
+    fontSize: 16,
+  },
+  label: {
+    color: '#D1A39C',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginRight: 10,
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 40,
+    textAlign: 'center',
   },
 });
 

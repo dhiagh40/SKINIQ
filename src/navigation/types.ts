@@ -1,28 +1,34 @@
 export type RootStackParamList = {
   Splash: undefined;
-  Intro: undefined;
+  Intro1: undefined;
   Intro2: undefined;
   Intro3: undefined;
   Login: undefined;
+  UserLoginScreen: undefined;
+  CreateAccountScreen: undefined;
+  ForgotPasswordScreen: undefined;
   Home: undefined;
-  UploadPhoto: undefined;
-  AnalysisResult: { 
-    skinType?: string;
-    issues?: string;
-    recommendations?: string;
-    imageUri?: string;
-    morningRoutine?: string[];
-    eveningRoutine?: string[];
-    skinTone?: string;
-    faceShape?: string;
-    productSuggestions?: string;
-  };
-  MorningRoutine: { routine: string[] };
-  EveningRoutine: { routine: string[] };
-  Products: undefined;
-  BeautySection: undefined;
-  LipstickColor: { skinTone: string }; // ✅ أضف هذا السطر
-  Eyeshadow: { skinTone: string }; // ✅ أضف هذا السطر
-  Foundation: { skinTone: string; skinType: string }; // ✅ أضف هذا السطر
-  // قم بإضافة باقي الشاشات هنا
+  UploadPhotoScreen: undefined;
+  AnalysisResultScreen: undefined;
+  MorningRoutineScreen: undefined;
+  EveningRoutineScreen: undefined;
+  ProductsRecommendationsScreen: undefined;
+  ProductDetailsScreen: undefined;
+  BeautySectionScreen: undefined;
+  LipstickColorScreen: undefined;
+  EyeshadowScreen: undefined; 
+  FoundationScreen: undefined; 
+  PackagesPricingScreen: undefined;
+  PaymentScreen: undefined; 
+  AnalysisHistoryScreen: undefined; 
+  NotificationsTipsScreen: undefined; 
+  SupportHelpScreen: undefined;
+  TermsPolicyScreen: undefined;
+  SettingsScreen: undefined;
+  LanguageScreen: undefined;
+  ProfileScreen: undefined;
+  LogoutScreen: undefined;
+  AppNotificationsScreen: undefined;
+  UpdatesScreen: undefined;
+  TestScreen: undefined;
 };

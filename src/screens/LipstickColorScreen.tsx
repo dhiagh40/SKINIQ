@@ -1,13 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
-import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/types';
+import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import useAnalysisStore from '../store/analysisStore';
 
 const { width } = Dimensions.get('window');
 const ITEM_WIDTH = (width - 60) / 2;
-
-type LipstickColorScreenRouteProp = RouteProp<RootStackParamList, 'LipstickColor'>;
 
 const getLipstickRecommendations = (skinTone: string) => {
   switch (skinTone.toLowerCase()) {
@@ -49,8 +45,7 @@ const getLipstickRecommendations = (skinTone: string) => {
 };
 
 const LipstickColorScreen = () => {
-  const route = useRoute<LipstickColorScreenRouteProp>();
-  const { skinTone } = route.params;
+  const skinTone = useAnalysisStore(state => state.skinTone) || 'default';
   const recommendations = getLipstickRecommendations(skinTone);
   const bestRecommendation = recommendations[0];
   const otherRecommendations = recommendations.slice(1);
@@ -65,7 +60,6 @@ const LipstickColorScreen = () => {
             <Text style={styles.highlightText}>{skinTone}</Text> skin tone.
           </Text>
         </View>
-
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Most Recommended</Text>
           <View style={styles.colorItem}>
@@ -76,7 +70,6 @@ const LipstickColorScreen = () => {
             </View>
           </View>
         </View>
-
         <Text style={styles.listHeader}>Other Suggestions</Text>
         <View style={styles.suggestionsGrid}>
           {otherRecommendations.map((color, index) => (
@@ -93,130 +86,130 @@ const LipstickColorScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F9F5F0',
-    padding: 20,
-  },
-  scrollView: {
-    flex: 1,
-    width: '100%',
-  },
-  infoBox: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 15,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  infoTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    textAlign: 'center',
-    marginBottom: 5,
-  },
-  infoText: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-  },
-  highlightText: {
-    fontWeight: 'bold',
-    color: '#A66B5A',
-  },
   card: {
     backgroundColor: '#fff',
     borderRadius: 15,
-    padding: 20,
+    elevation: 5,
     marginBottom: 20,
+    padding: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
-    elevation: 5,
   },
   cardTitle: {
+    color: '#D1A39C',
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#D1A39C',
     marginBottom: 15,
     textAlign: 'center',
   },
-  colorItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
   colorBox: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 15,
-    borderWidth: 2,
     borderColor: '#eee',
+    borderRadius: 30,
+    borderWidth: 2,
+    height: 60,
+    marginRight: 15,
+    width: 60,
   },
-  textContainer: {
-    flex: 1,
-  },
-  colorName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
+  colorBoxGrid: {
+    borderColor: '#eee',
+    borderRadius: 40,
+    borderWidth: 2,
+    height: 80,
+    marginBottom: 8,
+    width: 80,
   },
   colorDescription: {
-    fontSize: 14,
     color: '#888',
+    fontSize: 14,
     marginTop: 4,
   },
-  listHeader: {
+  colorDescriptionGrid: {
+    color: '#888',
+    fontSize: 12,
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  colorItem: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  colorName: {
+    color: '#333',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  colorNameGrid: {
     color: '#333',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  container: {
+    backgroundColor: '#F9F5F0',
+    flex: 1,
+    padding: 20,
+  },
+  highlightText: {
+    color: '#A66B5A',
+    fontWeight: 'bold',
+  },
+  infoBox: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    elevation: 3,
+    marginBottom: 20,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  infoText: {
+    color: '#666',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  infoTitle: {
+    color: '#D1A39C',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  listHeader: {
+    color: '#333',
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 15,
     marginTop: 10,
+  },
+  listItemCard: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    elevation: 2,
+    marginBottom: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    width: ITEM_WIDTH,
+  },
+  scrollView: {
+    flex: 1,
+    width: '100%',
   },
   suggestionsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  listItemCard: {
-    width: ITEM_WIDTH,
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 10,
-    marginBottom: 10,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  colorBoxGrid: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 8,
-    borderWidth: 2,
-    borderColor: '#eee',
-  },
-  colorNameGrid: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#333',
-  },
-  colorDescriptionGrid: {
-    fontSize: 12,
-    color: '#888',
-    textAlign: 'center',
-    marginTop: 4,
+  textContainer: {
+    flex: 1,
   },
 });
 

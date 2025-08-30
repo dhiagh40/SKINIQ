@@ -25,30 +25,30 @@ const LanguageScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    flex: 1,
     padding: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
+  languageItem: {
+    backgroundColor: '#F9F5F0',
+    borderRadius: 8,
+    marginBottom: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
+  languageText: {
+    color: '#D1A39C',
+    fontSize: 18,
     textAlign: 'center',
   },
   scrollView: {
     width: '100%',
   },
-  languageItem: {
-    backgroundColor: '#F9F5F0',
-    borderRadius: 8,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    marginBottom: 10,
-  },
-  languageText: {
-    fontSize: 18,
-    color: '#D1A39C',
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
     textAlign: 'center',
   },
 });

@@ -33,45 +33,45 @@ const ProductDetailsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollContent: {
-    padding: 20,
-    alignItems: 'center',
-  },
-  productName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-    textAlign: 'center',
-  },
-  productBrand: {
-    fontSize: 18,
-    color: '#666',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  productDescription: {
-    fontSize: 16,
-    color: '#333',
-    marginBottom: 30,
-    lineHeight: 24,
-    textAlign: 'justify',
-  },
   button: {
-    backgroundColor: '#D1A39C',
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
+    paddingHorizontal: 40,
+    paddingVertical: 15,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+  },
+  productBrand: {
+    color: '#666',
+    fontSize: 18,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  productDescription: {
+    color: '#333',
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 30,
+    textAlign: 'justify',
+  },
+  productName: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  scrollContent: {
+    alignItems: 'center',
+    padding: 20,
   },
 });
 

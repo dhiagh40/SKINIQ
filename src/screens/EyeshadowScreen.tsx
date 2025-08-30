@@ -8,8 +8,6 @@ import useAnalysisStore from '../store/analysisStore';
 const { width } = Dimensions.get('window');
 const ITEM_WIDTH = (width - 60) / 2;
 
-type EyeshadowScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Eyeshadow'>;
-
 interface EyeshadowPalette {
   name: string;
   description: string;
@@ -57,7 +55,7 @@ const renderItem = ({ item }: { item: EyeshadowPalette }) => (
 );
 
 const EyeshadowScreen = () => {
-  const navigation = useNavigation<EyeshadowScreenNavigationProp>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Eyeshadow'>>();
   const skinTone = useAnalysisStore(state => state.skinTone);
 
   if (!skinTone) {
@@ -103,83 +101,83 @@ const EyeshadowScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  colorPaletteDisplay: {
+    borderColor: '#eee',
+    borderRadius: 10,
+    borderWidth: 1,
+    flexDirection: 'row',
+    height: 60,
+    marginBottom: 8,
+    overflow: 'hidden',
+    width: '100%',
+  },
   container: {
-    flex: 1,
     backgroundColor: '#F9F5F0',
+    flex: 1,
     padding: 20,
+  },
+  highlightText: {
+    color: '#A66B5A',
+    fontWeight: 'bold',
   },
   infoBox: {
     backgroundColor: '#fff',
-    padding: 15,
     borderRadius: 15,
+    elevation: 3,
     marginBottom: 20,
+    padding: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
-  },
-  infoTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    textAlign: 'center',
-    marginBottom: 5,
   },
   infoText: {
-    fontSize: 16,
     color: '#666',
+    fontSize: 16,
     textAlign: 'center',
   },
-  highlightText: {
+  infoTitle: {
+    color: '#D1A39C',
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#A66B5A',
+    marginBottom: 5,
+    textAlign: 'center',
   },
   listContainer: {
     paddingBottom: 20,
   },
-  rowWrapper: {
-    justifyContent: 'space-between',
-    marginBottom: 5,
-  },
   paletteCard: {
-    width: ITEM_WIDTH,
+    alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 15,
+    elevation: 2,
     padding: 10,
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 3,
-    elevation: 2,
-  },
-  colorPaletteDisplay: {
-    flexDirection: 'row',
-    width: '100%',
-    height: 60,
-    borderRadius: 10,
-    overflow: 'hidden',
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: '#eee',
+    width: ITEM_WIDTH,
   },
   paletteColorSwatch: {
     flex: 1,
     height: '100%',
   },
+  paletteDescription: {
+    color: '#888',
+    fontSize: 12,
+    marginTop: 4,
+    textAlign: 'center',
+  },
   paletteName: {
+    color: '#333',
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#333',
     marginTop: 5,
-  },
-  paletteDescription: {
-    fontSize: 12,
-    color: '#888',
     textAlign: 'center',
-    marginTop: 4,
+  },
+  rowWrapper: {
+    justifyContent: 'space-between',
+    marginBottom: 5,
   },
 });
 

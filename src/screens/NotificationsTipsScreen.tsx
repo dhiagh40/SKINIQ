@@ -25,35 +25,35 @@ const NotificationsTipsScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    flex: 1,
     padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
-    textAlign: 'center',
-  },
-  scrollView: {
-    width: '100%',
   },
   notificationItem: {
     backgroundColor: '#F9F5F0',
     borderRadius: 10,
-    padding: 15,
     marginBottom: 15,
-  },
-  notificationTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    marginBottom: 5,
+    padding: 15,
   },
   notificationMessage: {
-    fontSize: 16,
     color: '#666',
+    fontSize: 16,
+  },
+  notificationTitle: {
+    color: '#D1A39C',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  scrollView: {
+    width: '100%',
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
 });
 

@@ -17,12 +17,12 @@ const PrimaryButton = ({ title, onPress }: Props) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.primary,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
     alignItems: "center",
+    backgroundColor: Colors.primary,
+    borderRadius: 10,
     marginVertical: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
   text: {
     color: Colors.white,

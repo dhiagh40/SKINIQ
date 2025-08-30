@@ -1,24 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../navigation/types';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/types';
+import useAnalysisStore from '../store/analysisStore'; // ✅ استيراد المتجر
 
-type EveningRoutineScreenRouteProp = RouteProp<RootStackParamList, 'EveningRoutine'>;
 type EveningRoutineScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'EveningRoutine'>;
 
 const EveningRoutineScreen = () => {
-  const route = useRoute<EveningRoutineScreenRouteProp>();
   const navigation = useNavigation<EveningRoutineScreenNavigationProp>();
-  
-  const routine: string[] = Array.isArray(route.params?.routine) ? route.params.routine : [];
+  // ✅ التعديل: قراءة الروتين مباشرة من المتجر
+  const eveningRoutine = useAnalysisStore(state => state.eveningRoutine);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Evening Routine</Text>
       <ScrollView style={styles.scrollView}>
-        {routine.length > 0 ? (
-          routine.map((step, index) => (
+        {eveningRoutine && eveningRoutine.length > 0 ? (
+          eveningRoutine.map((step, index) => (
             <View key={index} style={styles.stepContainer}>
               <Text style={styles.stepName}>Step {index + 1}</Text>
               <Text style={styles.stepDescription}>{String(step)}</Text>
@@ -39,16 +38,16 @@ const EveningRoutineScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#333', textAlign: 'center' },
-  scrollView: { width: '100%' },
-  stepContainer: { backgroundColor: '#F9F5F0', borderRadius: 10, padding: 15, marginBottom: 15 },
-  stepName: { fontSize: 18, fontWeight: 'bold', color: '#D1A39C', marginBottom: 5 },
-  stepDescription: { fontSize: 16, color: '#666', lineHeight: 24 },
-  infoBox: { backgroundColor: '#f0f0f0', borderRadius: 12, padding: 20, alignItems: 'center', justifyContent: 'center', minHeight: 150 },
-  infoText: { fontSize: 16, color: '#666', textAlign: 'center' },
-  backButton: { backgroundColor: '#A66B5A', paddingVertical: 14, paddingHorizontal: 20, borderRadius: 10, alignSelf: 'center', marginTop: 20 },
+  backButton: { alignSelf: 'center', backgroundColor: '#A66B5A', borderRadius: 10, marginTop: 20, paddingHorizontal: 20, paddingVertical: 14 },
   buttonText: { color: '#fff', fontSize: 14, fontWeight: 'bold' },
+  container: { backgroundColor: '#fff', flex: 1, padding: 20 },
+  infoBox: { alignItems: 'center', backgroundColor: '#f0f0f0', borderRadius: 12, justifyContent: 'center', minHeight: 150, padding: 20 },
+  infoText: { color: '#666', fontSize: 16, textAlign: 'center' },
+  scrollView: { width: '100%' },
+  stepContainer: { backgroundColor: '#F9F5F0', borderRadius: 10, marginBottom: 15, padding: 15 },
+  stepDescription: { color: '#666', fontSize: 16, lineHeight: 24 },
+  stepName: { color: '#D1A39C', fontSize: 18, fontWeight: 'bold', marginBottom: 5 },
+  title: { color: '#333', fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
 });
 
 export default EveningRoutineScreen;

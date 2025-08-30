@@ -29,20 +29,20 @@ const SplashScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#F9F5F0',
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F9F5F0',
+    flex: 1,
+    justifyContent: 'center',
   },
   logo: {
-    width: 120,
     height: 120,
     marginBottom: 20,
+    width: 120,
   },
   title: {
+    color: '#333',
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#333',
   },
 });
 

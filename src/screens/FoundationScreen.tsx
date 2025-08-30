@@ -1,13 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, Alert } from 'react-native';
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import useAnalysisStore from '../store/analysisStore';
-
-const { width } = Dimensions.get('window');
-
-type FoundationScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Foundation'>;
 
 interface FoundationShade {
   name: string;
@@ -53,7 +49,7 @@ const getFoundationRecommendations = (skinTone: string): { mostRecommended: Foun
 };
 
 const FoundationScreen = () => {
-  const navigation = useNavigation<FoundationScreenNavigationProp>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'FoundationScreen'>>();
   const skinTone = useAnalysisStore(state => state.skinTone);
 
   if (!skinTone) {
@@ -63,7 +59,7 @@ const FoundationScreen = () => {
       [
         {
           text: "Start Analysis",
-          onPress: () => navigation.navigate('UploadPhoto'),
+          onPress: () => navigation.navigate('UploadPhotoScreen'),
         },
         {
           text: "Cancel",
@@ -86,7 +82,6 @@ const FoundationScreen = () => {
             Based on your analysis, these shades are perfect for your <Text style={styles.highlightText}>{skinTone}</Text> skin tone.
           </Text>
         </View>
-
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Most Recommended</Text>
           <View style={styles.shadeItem}>
@@ -97,7 +92,6 @@ const FoundationScreen = () => {
             </View>
           </View>
         </View>
-
         <Text style={styles.listHeader}>Other Suggestions</Text>
         <View style={styles.suggestionsList}>
           {otherSuggestions.map((shade, index) => (
@@ -116,128 +110,128 @@ const FoundationScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F9F5F0',
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    elevation: 5,
+    marginBottom: 20,
     padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+  },
+  cardTitle: {
+    color: '#D1A39C',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  container: {
+    backgroundColor: '#F9F5F0',
+    flex: 1,
+    padding: 20,
+  },
+  highlightText: {
+    color: '#A66B5A',
+    fontWeight: 'bold',
+  },
+  infoBox: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    elevation: 3,
+    marginBottom: 20,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  infoText: {
+    color: '#666',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  infoTitle: {
+    color: '#D1A39C',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  listHeader: {
+    color: '#333',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    marginTop: 10,
+  },
+  listItemCard: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    elevation: 2,
+    flexDirection: 'row',
+    marginBottom: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
   },
   scrollView: {
     flex: 1,
     width: '100%',
   },
-  infoBox: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 15,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  infoTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    textAlign: 'center',
-    marginBottom: 5,
-  },
-  infoText: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-  },
-  highlightText: {
-    fontWeight: 'bold',
-    color: '#A66B5A',
-  },
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 20,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 5,
-  },
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  shadeItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
   shadeBox: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 15,
-    borderWidth: 2,
     borderColor: '#eee',
+    borderRadius: 30,
+    borderWidth: 2,
+    height: 60,
+    marginRight: 15,
+    width: 60,
   },
-  textContainer: {
-    flex: 1,
-  },
-  shadeName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
+  shadeBoxSmall: {
+    borderColor: '#eee',
+    borderRadius: 20,
+    borderWidth: 2,
+    height: 40,
+    marginRight: 10,
+    width: 40,
   },
   shadeDescription: {
-    fontSize: 14,
     color: '#888',
+    fontSize: 14,
     marginTop: 4,
   },
-  listHeader: {
+  shadeDescriptionSmall: {
+    color: '#888',
+    fontSize: 12,
+  },
+  shadeItem: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  shadeName: {
+    color: '#333',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  shadeNameSmall: {
     color: '#333',
-    marginBottom: 15,
-    marginTop: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   suggestionsList: {
     flexDirection: 'column',
   },
-  listItemCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 10,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  shadeBoxSmall: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 10,
-    borderWidth: 2,
-    borderColor: '#eee',
+  textContainer: {
+    flex: 1,
   },
   textContainerSmall: {
     flex: 1,
-  },
-  shadeNameSmall: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  shadeDescriptionSmall: {
-    fontSize: 12,
-    color: '#888',
   },
 });
 

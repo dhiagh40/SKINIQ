@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+
 import SplashScreen from '../screens/SplashScreen';
 import IntroScreen1 from '../screens/IntroScreen1';
 import IntroScreen2 from '../screens/IntroScreen2';
@@ -33,6 +34,7 @@ import LogoutScreen from '../screens/LogoutScreen';
 import AppNotificationsScreen from '../screens/AppNotificationsScreen';
 import UpdatesScreen from '../screens/UpdatesScreen';
 import TestScreen from '../screens/TestScreen';
+
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,33 +48,33 @@ const AppNavigator = () => {
         <Stack.Screen name="Intro2" component={IntroScreen2} />
         <Stack.Screen name="Intro3" component={IntroScreen3} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="UserLogin" component={UserLoginScreen} />
-        <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen name="UserLoginScreen" component={UserLoginScreen} />
+        <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
+        <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="UploadPhoto" component={UploadPhotoScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="AnalysisResult" component={AnalysisResultScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="MorningRoutine" component={MorningRoutineScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="EveningRoutine" component={EveningRoutineScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="ProductsRecommendations" component={ProductsRecommendationsScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="BeautySection" component={BeautySectionScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="LipstickColor" component={LipstickColorScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Eyeshadow" component={EyeshadowScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Foundation" component={FoundationScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="PackagesPricing" component={PackagesPricingScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Payment" component={PaymentScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="AnalysisHistory" component={AnalysisHistoryScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="NotificationsTips" component={NotificationsTipsScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="SupportHelp" component={SupportHelpScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="TermsPolicy" component={TermsPolicyScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Language" component={LanguageScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Logout" component={LogoutScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="AppNotifications" component={AppNotificationsScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Updates" component={UpdatesScreen} options={{ headerShown: true }} />
-        <Stack.Screen name="Test" component={TestScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="UploadPhotoScreen" component={UploadPhotoScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="AnalysisResultScreen" component={AnalysisResultScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="MorningRoutineScreen" component={MorningRoutineScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="EveningRoutineScreen" component={EveningRoutineScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="ProductDetailsScreen" component={ProductDetailsScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="ProductsRecommendationsScreen" component={ProductsRecommendationsScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="BeautySectionScreen" component={BeautySectionScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="LipstickColorScreen" component={LipstickColorScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="EyeshadowScreen" component={EyeshadowScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="FoundationScreen" component={FoundationScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="PackagesPricingScreen" component={PackagesPricingScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="PaymentScreen" component={PaymentScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="AnalysisHistoryScreen" component={AnalysisHistoryScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="NotificationsTipsScreen" component={NotificationsTipsScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="SupportHelpScreen" component={SupportHelpScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="TermsPolicyScreen" component={TermsPolicyScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="LanguageScreen" component={LanguageScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="LogoutScreen" component={LogoutScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="AppNotificationsScreen" component={AppNotificationsScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="UpdatesScreen" component={UpdatesScreen} options={{ headerShown: true }} />
+        <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

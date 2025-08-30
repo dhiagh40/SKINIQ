@@ -60,40 +60,40 @@ const CreateAccountScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 40,
-  },
-  input: {
-    width: '100%',
-    padding: 15,
-    borderWidth: 1,
-    borderColor: '#D1A39C',
-    borderRadius: 8,
-    marginBottom: 15,
-    fontSize: 16,
-  },
   button: {
-    width: '100%',
-    backgroundColor: '#D1A39C',
-    paddingVertical: 15,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
     marginTop: 20,
+    paddingVertical: 15,
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  input: {
+    borderColor: '#D1A39C',
+    borderRadius: 8,
+    borderWidth: 1,
+    fontSize: 16,
+    marginBottom: 15,
+    padding: 15,
+    width: '100%',
+  },
+  title: {
+    color: '#333',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 40,
   },
 });
 

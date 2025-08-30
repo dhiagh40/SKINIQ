@@ -4,9 +4,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 
+// ✅ تم تصحيح نوع التنقل ليطابق الاسم الصحيح 'SettingsScreen'
 type SettingsScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'Settings'
+  'SettingsScreen'
 >;
 
 const SettingsScreen = () => {
@@ -17,31 +18,31 @@ const SettingsScreen = () => {
       <Text style={styles.title}>Settings</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('ProfileScreen')}
       >
         <Text style={styles.buttonText}>Profile</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Language')}
+        onPress={() => navigation.navigate('LanguageScreen')}
       >
         <Text style={styles.buttonText}>Language</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('AppNotifications')}
+        onPress={() => navigation.navigate('AppNotificationsScreen')}
       >
         <Text style={styles.buttonText}>App Notifications</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Updates')}
+        onPress={() => navigation.navigate('UpdatesScreen')}
       >
         <Text style={styles.buttonText}>New Updates</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, styles.logoutButton]}
-        onPress={() => navigation.navigate('Logout')}
+        onPress={() => navigation.navigate('LogoutScreen')}
       >
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
@@ -50,35 +51,35 @@ const SettingsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#333',
-    textAlign: 'center',
-  },
   button: {
-    width: '100%',
-    backgroundColor: '#F9F5F0',
-    paddingVertical: 20,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#F9F5F0',
+    borderRadius: 8,
     marginBottom: 15,
+    paddingVertical: 20,
+    width: '100%',
   },
   buttonText: {
+    color: '#D1A39C',
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#D1A39C',
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
   },
   logoutButton: {
     backgroundColor: '#FF6347',
     marginTop: 20,
+  },
+  title: {
+    color: '#333',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 40,
+    textAlign: 'center',
   },
 });
 

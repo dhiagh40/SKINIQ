@@ -14,7 +14,7 @@ const IntroScreen3 = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Let's get started!</Text>
+      <Text style={styles.title}>{"Let's get started!"}</Text>
       <Text style={styles.subtitle}>Unlock your personalized beauty journey.</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
         <Text style={styles.buttonText}>Get Started</Text>
@@ -24,36 +24,36 @@ const IntroScreen3 = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    marginBottom: 40,
-  },
   button: {
     backgroundColor: '#D1A39C',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
     borderRadius: 25,
+    paddingHorizontal: 30,
+    paddingVertical: 12,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
+    marginBottom: 40,
+    textAlign: 'center',
+  },
+  title: {
+    color: '#333',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 

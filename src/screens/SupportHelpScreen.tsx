@@ -30,38 +30,38 @@ const SupportHelpScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 40,
-    textAlign: 'center',
-  },
   button: {
-    width: '100%',
-    backgroundColor: '#D1A39C',
-    paddingVertical: 15,
-    borderRadius: 8,
     alignItems: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
     marginBottom: 15,
+    paddingVertical: 15,
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
+    marginBottom: 40,
+    textAlign: 'center',
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 

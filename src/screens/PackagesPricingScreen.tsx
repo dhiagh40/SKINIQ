@@ -4,9 +4,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 
+// ✅ تم تصحيح نوع التنقل ليطابق الاسم الصحيح 'PackagesPricingScreen'
 type PackagesPricingScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'PackagesPricing'
+  'PackagesPricingScreen'
 >;
 
 const PackagesPricingScreen = () => {
@@ -31,7 +32,7 @@ const PackagesPricingScreen = () => {
             ))}
             <TouchableOpacity 
               style={styles.button}
-              onPress={() => navigation.navigate('Payment')}
+              onPress={() => navigation.navigate('PaymentScreen')}
             >
               <Text style={styles.buttonText}>Choose Plan</Text>
             </TouchableOpacity>
@@ -43,55 +44,55 @@ const PackagesPricingScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
-    textAlign: 'center',
-  },
-  scrollView: {
-    width: '100%',
-  },
-  planCard: {
-    backgroundColor: '#F9F5F0',
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  planName: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    marginBottom: 5,
-  },
-  planPrice: {
-    fontSize: 18,
-    color: '#666',
-    marginBottom: 15,
-  },
-  featureText: {
-    fontSize: 16,
-    color: '#333',
-    marginBottom: 5,
-  },
   button: {
     backgroundColor: '#D1A39C',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
     borderRadius: 8,
     marginTop: 15,
+    paddingHorizontal: 30,
+    paddingVertical: 12,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    padding: 20,
+  },
+  featureText: {
+    color: '#333',
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  planCard: {
+    alignItems: 'center',
+    backgroundColor: '#F9F5F0',
+    borderRadius: 10,
+    marginBottom: 15,
+    padding: 20,
+  },
+  planName: {
+    color: '#D1A39C',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  planPrice: {
+    color: '#666',
+    fontSize: 18,
+    marginBottom: 15,
+  },
+  scrollView: {
+    width: '100%',
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
 });
 

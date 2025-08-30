@@ -1,98 +1,139 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 
-type PackagesPricingScreenNavigationProp = NativeStackNavigationProp<
+type PaymentScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'PackagesPricing'
+  'PaymentScreen'
 >;
 
-const PackagesPricingScreen = () => {
-  const navigation = useNavigation<PackagesPricingScreenNavigationProp>();
+const PaymentScreen = () => {
+  const navigation = useNavigation<PaymentScreenNavigationProp>();
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [cardHolder, setCardHolder] = useState('');
 
-  const plans = [
-    { name: 'Basic Plan', price: '$9.99/month', features: ['10 analyses per month', 'Basic routines'] },
-    { name: 'Premium Plan', price: '$24.99/month', features: ['Unlimited analyses', 'Advanced routines', 'Makeup recommendations'] },
-    { name: 'Yearly Plan', price: '$199.99/year', features: ['All Premium features', '2 free months', 'Priority support'] },
-  ];
+  const handlePayment = () => {
+    if (!cardNumber || !expiryDate || !cvv || !cardHolder) {
+      Alert.alert('Error', 'Please fill in all the payment details.');
+      return;
+    }
+    
+    // هنا يمكنك إضافة منطق معالجة الدفع الفعلي
+    Alert.alert('Success', 'Payment processed successfully!');
+    // بعد الدفع، يمكنك التوجيه إلى شاشة التأكيد أو الصفحة الرئيسية
+    navigation.navigate('Home');
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Plans & Pricing</Text>
-      <ScrollView style={styles.scrollView}>
-        {plans.map((plan, index) => (
-          <View key={index} style={styles.planCard}>
-            <Text style={styles.planName}>{plan.name}</Text>
-            <Text style={styles.planPrice}>{plan.price}</Text>
-            {plan.features.map((feature, featureIndex) => (
-              <Text key={featureIndex} style={styles.featureText}>- {feature}</Text>
-            ))}
-            <TouchableOpacity 
-              style={styles.button}
-              onPress={() => navigation.navigate('Payment')}
-            >
-              <Text style={styles.buttonText}>Choose Plan</Text>
-            </TouchableOpacity>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.title}>Secure Payment</Text>
+        <Text style={styles.subtitle}>Enter your card details to complete the subscription.</Text>
+
+        <View style={styles.formContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Card Number"
+            keyboardType="numeric"
+            value={cardNumber}
+            onChangeText={setCardNumber}
+            maxLength={16}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Cardholder Name"
+            value={cardHolder}
+            onChangeText={setCardHolder}
+          />
+          <View style={styles.row}>
+            <TextInput
+              style={[styles.input, styles.halfInput]}
+              placeholder="MM/YY"
+              keyboardType="numeric"
+              value={expiryDate}
+              onChangeText={setExpiryDate}
+              maxLength={5}
+            />
+            <TextInput
+              style={[styles.input, styles.halfInput]}
+              placeholder="CVV"
+              keyboardType="numeric"
+              value={cvv}
+              onChangeText={setCvv}
+              maxLength={3}
+            />
           </View>
-        ))}
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handlePayment}>
+          <Text style={styles.buttonText}>Pay Now</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
-    textAlign: 'center',
-  },
-  scrollView: {
-    width: '100%',
-  },
-  planCard: {
-    backgroundColor: '#F9F5F0',
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  planName: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D1A39C',
-    marginBottom: 5,
-  },
-  planPrice: {
-    fontSize: 18,
-    color: '#666',
-    marginBottom: 15,
-  },
-  featureText: {
-    fontSize: 16,
-    color: '#333',
-    marginBottom: 5,
-  },
   button: {
+    alignItems: 'center',
     backgroundColor: '#D1A39C',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
     borderRadius: 8,
-    marginTop: 15,
+    marginTop: 30,
+    paddingVertical: 15,
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
+  },
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    padding: 20,
+  },
+  formContainer: {
+    marginTop: 30,
+    width: '100%',
+  },
+  halfInput: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  input: {
+    borderColor: '#D1A39C',
+    borderRadius: 8,
+    borderWidth: 1,
+    fontSize: 16,
+    marginBottom: 15,
+    padding: 15,
+    width: '100%',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  title: {
+    color: '#333',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 
-export default PackagesPricingScreen;
+export default PaymentScreen;

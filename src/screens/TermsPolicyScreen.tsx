@@ -21,33 +21,33 @@ const TermsPolicyScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
+  bodyText: {
+    color: '#666',
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 10,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
-    textAlign: 'center',
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    padding: 20,
   },
   scrollView: {
     width: '100%',
   },
   sectionTitle: {
+    color: '#D1A39C',
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#D1A39C',
-    marginTop: 15,
     marginBottom: 5,
+    marginTop: 15,
   },
-  bodyText: {
-    fontSize: 16,
-    color: '#666',
-    lineHeight: 24,
-    marginBottom: 10,
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
 });
 

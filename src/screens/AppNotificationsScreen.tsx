@@ -23,28 +23,28 @@ const AppNotificationsScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    flex: 1,
     padding: 20,
   },
+  settingItem: {
+    alignItems: 'center',
+    backgroundColor: '#F9F5F0',
+    borderRadius: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 15,
+  },
+  settingText: {
+    color: '#D1A39C',
+    fontSize: 18,
+  },
   title: {
+    color: '#333',
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#333',
     textAlign: 'center',
-  },
-  settingItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#F9F5F0',
-    padding: 15,
-    borderRadius: 8,
-  },
-  settingText: {
-    fontSize: 18,
-    color: '#D1A39C',
   },
 });
 

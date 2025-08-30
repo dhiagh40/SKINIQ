@@ -13,11 +13,11 @@ const LoginScreen = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>();
 
   const handleLogin = () => {
-    navigation.navigate('UserLogin'); 
+    navigation.navigate('UserLoginScreen'); 
   };
 
   const handleCreateAccount = () => {
-    navigation.navigate('CreateAccount');
+    navigation.navigate('CreateAccountScreen');
   };
   
   const handleContinueAsGuest = () => {
@@ -47,55 +47,55 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  button: {
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 50,
-    textAlign: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
+    marginBottom: 15,
+    paddingVertical: 15,
+    width: '80%',
   },
   buttonContainer: {
+    alignItems: 'center',
     width: '100%',
-    alignItems: 'center',
-  },
-  button: {
-    width: '80%',
-    backgroundColor: '#D1A39C',
-    paddingVertical: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 15,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
   guestButton: {
-    width: '80%',
+    alignItems: 'center',
     backgroundColor: 'transparent',
-    paddingVertical: 15,
+    borderColor: '#D1A39C',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#D1A39C',
-    alignItems: 'center',
+    paddingVertical: 15,
+    width: '80%',
   },
   guestButtonText: {
     color: '#D1A39C',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
+    marginBottom: 50,
+    textAlign: 'center',
+  },
+  title: {
+    color: '#333',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });
 

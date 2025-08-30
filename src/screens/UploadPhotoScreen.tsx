@@ -6,27 +6,29 @@ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import { RootStackParamList } from '../navigation/types';
 import { GEMINI_API_KEY } from '@env';
+import useAnalysisStore from '../store/analysisStore';
 
 type AnalysisResult = {
   skinType?: string;
   issues?: string;
   recommendations?: string;
-  skinTone?: string;
-  faceShape?: string;
-  morningRoutine?: string[];
-  eveningRoutine?: string[];
-  productSuggestions?: string;
+  // skinTone?: string;
+  // faceShape?: string;
+  // morningRoutine?: string[];
+  // eveningRoutine?: string[];
+  // productSuggestions?: string;
 };
 
 type UploadPhotoScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'UploadPhoto'
+  'UploadPhotoScreen'
 >;
 
 const UploadPhotoScreen = () => {
   const navigation = useNavigation<UploadPhotoScreenNavigationProp>();
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const { setAnalysisData } = useAnalysisStore();
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -146,17 +148,10 @@ const UploadPhotoScreen = () => {
         return;
       }
 
-      navigation.navigate('AnalysisResult', {
-        skinType: parsedResult.skinType || 'غير متاح',
-        issues: parsedResult.issues || 'غير متاح',
-        recommendations: parsedResult.recommendations || 'غير متاح',
-        skinTone: parsedResult.skinTone || 'غير متاح',
-        faceShape: parsedResult.faceShape || 'غير متاح',
-        morningRoutine: parsedResult.morningRoutine || [],
-        eveningRoutine: parsedResult.eveningRoutine || [],
-        productSuggestions: parsedResult.productSuggestions || 'غير متاح',
-        imageUri,
-      });
+      setAnalysisData({ ...parsedResult, imageUri });
+      
+      navigation.navigate('AnalysisResultScreen');
+    
     } catch (error) {
       console.error(error);
       Alert.alert('Error', 'Failed to analyze the image. Please try again.');
@@ -193,13 +188,53 @@ const UploadPhotoScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10, color: '#333', textAlign: 'center' },
-  subtitle: { fontSize: 16, color: '#666', marginBottom: 20, textAlign: 'center' },
-  button: { backgroundColor: '#D1A39C', paddingVertical: 15, paddingHorizontal: 40, borderRadius: 8, alignItems: 'center', marginBottom: 15 },
-  uploadButton: { backgroundColor: '#A66B5A', paddingVertical: 15, paddingHorizontal: 40, borderRadius: 8, alignItems: 'center', marginTop: 20 },
-  buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
-  previewImage: { width: 250, height: 250, borderRadius: 10, marginTop: 20 },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
+    marginBottom: 15,
+    paddingHorizontal: 40,
+    paddingVertical: 15,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  previewImage: {
+    borderRadius: 10,
+    height: 250,
+    marginTop: 20,
+    width: 250,
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  uploadButton: {
+    alignItems: 'center',
+    backgroundColor: '#A66B5A',
+    borderRadius: 8,
+    marginTop: 20,
+    paddingHorizontal: 40,
+    paddingVertical: 15,
+  },
 });
 
 export default UploadPhotoScreen;

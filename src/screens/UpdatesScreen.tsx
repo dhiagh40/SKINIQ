@@ -32,60 +32,60 @@ const UpdatesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
-    textAlign: 'center',
-  },
-  scrollView: {
-    width: '100%',
-  },
-  currentVersion: {
-    marginBottom: 10,
-    alignItems: 'center',
-  },
-  versionText: {
-    fontSize: 16,
-    color: '#666',
-  },
   checkButton: {
-    backgroundColor: '#D1A39C',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
     alignSelf: 'center',
+    backgroundColor: '#D1A39C',
+    borderRadius: 8,
     marginBottom: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   checkButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  updatesList: {
-    marginTop: 10,
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+    padding: 20,
+  },
+  currentVersion: {
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  scrollView: {
+    width: '100%',
+  },
+  title: {
+    color: '#333',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  updateFeatures: {
+    color: '#666',
+    fontSize: 16,
   },
   updateItem: {
     backgroundColor: '#F9F5F0',
     borderRadius: 10,
-    padding: 15,
     marginBottom: 15,
+    padding: 15,
   },
   updateVersion: {
+    color: '#D1A39C',
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#D1A39C',
     marginBottom: 5,
   },
-  updateFeatures: {
-    fontSize: 16,
+  updatesList: {
+    marginTop: 10,
+  },
+  versionText: {
     color: '#666',
+    fontSize: 16,
   },
 });
 
