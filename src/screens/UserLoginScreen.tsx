@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 import { RootStackParamList } from '../navigation/types';
 
-// ✅ تم تصحيح نوع التنقل ليطابق الاسم الصحيح 'UserLoginScreen'
 type UserLoginScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'UserLoginScreen'
@@ -13,20 +13,38 @@ type UserLoginScreenNavigationProp = NativeStackNavigationProp<
 const UserLoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<UserLoginScreenNavigationProp>();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
       Alert.alert('Error', 'Please enter your email and password.');
       return;
     }
-    
-    Alert.alert('Success', 'You have logged in successfully!');
-    navigation.navigate('Home');
+
+    setIsLoading(true);
+    try {
+      const response = await axios.post('https://3000-dhiagh40-skiniq-8qbo0xk598r.ws-eu121.gitpod.io/login', {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        Alert.alert('Success', 'You have logged in successfully!');
+        navigation.navigate('Home');
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        Alert.alert('Login Error', error.response.data.error || 'Invalid credentials. Please try again.');
+      } else {
+        Alert.alert('Error', 'Failed to connect to the server.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleForgotPassword = () => {
-    // ✅ تم تصحيح اسم الشاشة ليطابق 'ForgotPasswordScreen'
     navigation.navigate('ForgotPasswordScreen');
   };
 
@@ -40,6 +58,7 @@ const UserLoginScreen = () => {
         keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
+        autoCapitalize="none"
       />
       
       <TextInput
@@ -54,8 +73,16 @@ const UserLoginScreen = () => {
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Log In</Text>
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={handleLogin}
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <ActivityIndicator size="small" color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Log In</Text>
+        )}
       </TouchableOpacity>
     </View>
   );

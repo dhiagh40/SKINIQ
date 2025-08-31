@@ -1,28 +1,52 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 import { RootStackParamList } from '../navigation/types';
 
 type CreateAccountScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'CreateAccount'
+  'CreateAccountScreen'
 >;
 
 const CreateAccountScreen = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<CreateAccountScreenNavigationProp>();
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = async () => {
     if (!name || !email || !password) {
       Alert.alert('Error', 'Please fill in all fields.');
       return;
     }
-    
-    Alert.alert('Success', 'Account created successfully!');
-    navigation.navigate('Home');
+
+    setIsLoading(true);
+    try {
+      const response = await axios.post('https://3000-dhiagh40-skiniq-8qbo0xk598r.ws-eu121.gitpod.io/signup', {
+        email,
+        password,
+      });
+
+      if (response.status === 201) {
+        Alert.alert('Success', 'Account created successfully!');
+        navigation.navigate('Home'); 
+      }
+    } catch (error) {
+      // هذا الجزء هو الذي تم تعديله
+      if (axios.isAxiosError(error) && error.response) {
+        // عرض رسالة الخطأ من السيرفر فقط في النافذة المنبثقة
+        Alert.alert('Error', error.response.data.error || 'Something went wrong.');
+      } else {
+        // رسالة عامة للشبكة
+        Alert.alert('Error', 'Failed to connect to the server. Please check your internet connection and server status.');
+      }
+      // تم حذف سطر console.error(error) لمنع ظهور الرسالة الفنية
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -42,6 +66,7 @@ const CreateAccountScreen = () => {
         keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
+        autoCapitalize="none"
       />
       
       <TextInput
@@ -52,8 +77,16 @@ const CreateAccountScreen = () => {
         onChangeText={setPassword}
       />
       
-      <TouchableOpacity style={styles.button} onPress={handleCreateAccount}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={handleCreateAccount} 
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <ActivityIndicator size="small" color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Sign Up</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
