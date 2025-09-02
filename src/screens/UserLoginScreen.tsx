@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { RootStackParamList } from '../navigation/types';
+import { API_BASE_URL } from '../../config'; // تم تعديل المسار هنا
 
 type UserLoginScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -24,7 +25,7 @@ const UserLoginScreen = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('https://3000-dhiagh40-skiniq-8qbo0xk598r.ws-eu121.gitpod.io/login', {
+      const response = await axios.post(`${API_BASE_URL}/login`, { // تم تعديل الرابط هنا
         email,
         password,
       });
@@ -32,6 +33,8 @@ const UserLoginScreen = () => {
       if (response.status === 200) {
         Alert.alert('Success', 'You have logged in successfully!');
         navigation.navigate('Home');
+      } else {
+        Alert.alert('Login Error', response.data.error || 'Invalid credentials. Please try again.');
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -51,7 +54,6 @@ const UserLoginScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back!</Text>
-      
       <TextInput
         style={styles.input}
         placeholder="Email Address"
@@ -60,7 +62,6 @@ const UserLoginScreen = () => {
         onChangeText={setEmail}
         autoCapitalize="none"
       />
-      
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -68,13 +69,11 @@ const UserLoginScreen = () => {
         value={password}
         onChangeText={setPassword}
       />
-      
       <TouchableOpacity onPress={handleForgotPassword}>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </TouchableOpacity>
-      
-      <TouchableOpacity 
-        style={styles.button} 
+      <TouchableOpacity
+        style={styles.button}
         onPress={handleLogin}
         disabled={isLoading}
       >

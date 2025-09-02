@@ -1,1 +1,1 @@
-export const SERVER_URL = "https://1234-3000.ws-us.gitpod.io";
+export const SERVER_URL = "https://3000-dhiagh40-skiniq-uoziyool6a3.ws-eu121.gitpod.io";
